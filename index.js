@@ -5,7 +5,7 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello, World!\n');
 });
-
+// пишем в консоль
 server.listen(3000, () => {
     console.log('Сервер запущен на http://localhost:3000');
 })
