@@ -27,8 +27,15 @@ function sendHtml(res) {
         :root {
             color-scheme: light;
             font-family: Arial, Helvetica, sans-serif;
-            background: #eef2f7;
-            color: #182230;
+            --moex-red: #e30613;
+            --text-main: #20242a;
+            --text-muted: #6b7280;
+            --line: #d8dde6;
+            --line-soft: #edf0f4;
+            --page-bg: #f4f6f9;
+            --panel-bg: #ffffff;
+            color: var(--text-main);
+            background: var(--page-bg);
         }
 
         * {
@@ -41,48 +48,68 @@ function sendHtml(res) {
             display: grid;
             place-items: center;
             padding: 24px;
+            background:
+                linear-gradient(180deg, #ffffff 0, var(--page-bg) 165px),
+                var(--page-bg);
         }
 
         main {
             width: min(100%, 460px);
-            background: #ffffff;
-            border: 1px solid #d7dde8;
-            border-radius: 8px;
-            padding: 28px;
-            box-shadow: 0 18px 40px rgba(21, 32, 51, 0.12);
+            overflow: hidden;
+            background: var(--panel-bg);
+            border: 1px solid var(--line);
+            border-radius: 2px;
+            padding: 0;
+            box-shadow: 0 14px 32px rgba(32, 36, 42, 0.10);
         }
 
         .topline {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            margin-bottom: 26px;
+            padding: 17px 22px 16px;
+            border-bottom: 1px solid var(--line-soft);
+            background: var(--panel-bg);
+        }
+
+        .topline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--moex-red);
         }
 
         h1 {
             margin: 0;
-            font-size: 22px;
+            font-size: 19px;
             line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: 0;
         }
 
         button {
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             display: inline-grid;
             place-items: center;
             flex: 0 0 auto;
-            border: 1px solid #c7d0df;
-            border-radius: 8px;
-            background: #f8fafc;
-            color: #182230;
+            border: 1px solid #ccd2dc;
+            border-radius: 2px;
+            background: var(--panel-bg);
+            color: var(--text-main);
             cursor: pointer;
-            transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+            transition: transform 120ms ease, border-color 120ms ease, color 120ms ease, background 120ms ease;
         }
 
         button:hover {
-            background: #eef4ff;
-            border-color: #7da4e8;
+            background: #f7f8fa;
+            border-color: var(--moex-red);
+            color: var(--moex-red);
         }
 
         button:active {
@@ -99,28 +126,38 @@ function sendHtml(res) {
         }
 
         .label {
-            margin: 0 0 8px;
+            margin: 26px 28px 10px;
             font-size: 14px;
-            color: #65758b;
+            line-height: 1.35;
+            color: var(--text-muted);
         }
 
         .rate {
-            margin: 0;
-            font-size: 44px;
+            margin: 0 28px;
+            font-size: 50px;
             line-height: 1;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--text-main);
         }
 
         .meta {
             min-height: 22px;
-            margin: 18px 0 0;
+            margin: 18px 28px 26px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line-soft);
             font-size: 14px;
-            color: #65758b;
+            line-height: 1.35;
+            color: var(--text-muted);
         }
 
         .error {
             color: #b42318;
+        }
+
+        @media (max-width: 760px) {
+            .rate {
+                font-size: 42px;
+            }
         }
 
         @keyframes spin {
@@ -133,9 +170,9 @@ function sendHtml(res) {
 <body>
     <main>
         <div class="topline">
-            <h1>USD к RUB</h1>
+            <h1>USD/RUB</h1>
             <button id="refresh" type="button" aria-label="Обновить курс" title="Обновить курс">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     <path d="M20 4v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>

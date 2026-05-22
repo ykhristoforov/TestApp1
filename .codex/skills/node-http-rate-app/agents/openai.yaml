@@ -1,0 +1,3 @@
+display_name: Node HTTP Rate App
+short_description: Helps modify this project's Node.js exchange-rate server and UI.
+default_prompt: Work on the local CommonJS Node.js currency-rate app, preserving simple routing, manual refresh behavior, and lightweight validation.

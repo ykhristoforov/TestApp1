@@ -1,0 +1,3 @@
+display_name: Project Skill Template
+short_description: Template for a project-local Codex skill.
+default_prompt: Use this skill template to create concise project-specific workflows, references, and validation steps.
